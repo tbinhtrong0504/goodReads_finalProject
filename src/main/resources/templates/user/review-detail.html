@@ -1,0 +1,252 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: #css},
+                                                ~{:: #header},
+                                                ~{:: #main-content},
+                                                ~{:: #footer},
+                                                ~{:: #js}
+                                                )}">
+<head>
+
+    <title>Book - Review</title>
+    <th:block id="css">
+        <style>
+
+            textarea {
+                text-transform: none;
+            }
+
+            .d-flex {
+                display: flex;
+            }
+
+            .tg-authorbox {
+                display: flex;
+            }
+
+            .tg-authorinfo {
+                overflow: inherit;
+            }
+
+            .p-0 {
+                padding: 0;
+            }
+
+            .pt-0 {
+                padding-top: 0;
+            }
+
+            .mt-58 {
+                margin-top: 58px;
+            }
+
+            .font-weight-bolder {
+                font-weight: bolder;
+            }
+
+            #reading-book-status {
+                width: 150px;
+                display: flex;
+            }
+
+            #reading-book-status button:first-child {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                padding: 10px;
+            }
+
+        </style>
+    </th:block>
+
+</head>
+<body>
+
+<div id="tg-wrapper" class="tg-wrapper tg-haslayout review-page">
+    <!--************************************
+            Header Start
+    *************************************-->
+    <th:block id="header" th:replace="fragments/header :: header"></th:block>
+    <!--************************************
+            Header End
+    *************************************-->
+    <th:block id="main-content" th:with="book=${bookDetail} ">
+        <!--************************************
+                Inner Banner Start
+        *************************************-->
+        <div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100"
+             data-appear-top-offset="600" data-parallax="scroll"
+             th:attr="data-image-src=@{/original/images/parallax/bgparallax-07.jpg}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="tg-innerbannercontent">
+                            <h1>Reviews</h1>
+                            <ol class="tg-breadcrumb">
+                                <li><a href="/">home</a></li>
+                                <li><a href="/books?pageIndex=1&pageSize=8">Books</a></li>
+                                <li><a th:href="@{/books/{bookId} (bookId=${book.id})}"
+                                       th:text="${book.title}">title</a></li>
+                                <li class="tg-active">Review</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                Inner Banner End
+        *************************************-->
+        <!--************************************
+                Main Start
+        *************************************-->
+        <main id="tg-main" class="tg-main tg-haslayout">
+            <!--************************************
+                    News Grid Start
+            *************************************-->
+            <div class="tg-sectionspace tg-haslayout">
+                <div class="container">
+                    <div class="row">
+                        <div id="tg-twocolumns" class="tg-twocolumns">
+                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                                <div id="tg-content" class="tg-content">
+                                    <div class="tg-newsdetail">
+
+                                        <div class="tg-authorbox d-lex">
+                                            <figure class="tg-img" style="width: 100px; padding: 3px;">
+                                                <img th:src="${book.image}" alt="image description">
+                                            </figure>
+                                            <div class="tg-authorinfo">
+                                                <div class="tg-authorhead">
+                                                    <div class="tg-leftarea">
+                                                        <div class="tg-authorname">
+                                                            <div class="tg-booktitle p-0 font-weight-bolder">
+                                                                <h2><a th:href="@{/books/{bookId} (bookId=${book.id})}"
+                                                                       th:text="${book.title}"></a></h2>
+                                                            </div>
+                                                            <span class="tg-bookwriter ">By: <a
+                                                                    href="javascript:void(0);"
+                                                                    th:text="${book.author}">Angela Gunning</a></span>
+                                                            <div class="d-flex mt-58">
+
+                                                                <div id="display-rating-personal" class="d-flex">
+                                                                    <span class="pt-4" style="padding-top: 4px">My rating: </span>
+                                                                    <a type="button" class="btn pt-0">
+
+                                                                        <div class="stars">
+                                                                            <svg class="star" data-value="1"
+                                                                                 viewBox="0 0 940.688 940.688">
+                                                                                <path
+                                                                                        d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z"/>
+                                                                            </svg>
+                                                                            <svg class="star" data-value="2"
+                                                                                 viewBox="0 0 940.688 940.688">
+                                                                                <path
+                                                                                        d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z"/>
+                                                                            </svg>
+                                                                            <svg class="star" data-value="3"
+                                                                                 viewBox="0 0 940.688 940.688">
+                                                                                <path
+                                                                                        d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z"/>
+                                                                            </svg>
+                                                                            <svg class="star" data-value="4"
+                                                                                 viewBox="0 0 940.688 940.688">
+                                                                                <path
+                                                                                        d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z"/>
+                                                                            </svg>
+                                                                            <svg class="star" data-value="5"
+                                                                                 viewBox="0 0 940.688 940.688">
+                                                                                <path
+                                                                                        d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z"/>
+                                                                            </svg>
+
+                                                                            <div class="overlay"
+                                                                                 th:attr="ratingDetail=${book.ratingDetail}"
+                                                                                 th:style="|width:${100-(book.ratingDetail*20)}%|">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <th:block
+                                                        th:replace="fragments/reading-book :: readingBook(${book.readingStatus},${book.id})">
+                                                </th:block>
+                                            </div>
+                                        </div>
+
+                                        <div class="tg-leaveyourcomment">
+
+                                            <form class="tg-formtheme tg-formleavecomment" id="review-form">
+                                                <fieldset>
+                                                    <div class="form-group" style="width: 100%">
+                                                        <textarea type="text" placeholder="Enter your review" rows="5"
+                                                                  name="review-content" id="review-content"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date started: </label>
+                                                        <input type="date" name="date started" id="start-date"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date finished: </label>
+                                                        <input type="date" name="finished-date" id="finish-date"
+                                                               class="form-control">
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                            <div class="form-group">
+                                                <a class="tg-btn tg-active"
+                                                   href="javascript:void(0);" id="save-review"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
+                                <th:block id="tg-sidebar" th:replace="fragments/sidebar :: sidebar"></th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--************************************
+                    News Grid End
+            *************************************-->
+        </main>
+        <!--************************************
+                Main End
+        *************************************-->
+    </th:block>
+    <!--************************************
+            Footer Start
+    *************************************-->
+    <th:block id="footer" th:replace="fragments/footer :: footer"></th:block>
+    <!--************************************
+            Footer End
+    *************************************-->
+</div>
+<!--************************************
+        Wrapper End
+*************************************-->
+
+<th:block id="js">
+    <script th:inline="javascript">
+        let bookDetail = [[${bookDetail}]]
+        let bookId = bookDetail.id;
+
+    </script>
+    <script th:src="@{/handle/rating-review.js}"></script>
+
+</th:block>
+</body>
+
+</html>

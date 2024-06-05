@@ -1,0 +1,20 @@
+<th:block th:fragment="following(relationshipStatus,userId)">
+
+    <th:block th:if="${relationshipStatus== true}">
+        <div class="tg-leftarea mt-10">
+            <a onmouseover="changeText(this)" onmouseout="restoreText(this)" class="tg-btnreply following follow"
+               href="javascript:void(0);"
+               style="" th:attr="user-accept-id=${userId},is-following=${relationshipStatus==true?1:0}">Following</a>
+        </div>
+    </th:block>
+
+    <th:block th:if="${relationshipStatus== false}">
+        <div class="tg-leftarea mt-10">
+            <a class="tg-btnreply un-following follow"
+               href="javascript:void(0);"
+               style="color: white; background-color: #77B748"
+               th:attr="user-accept-id=${userId},is-following=${relationshipStatus==true?1:0}">Follow</a>
+        </div>
+    </th:block>
+
+</th:block>

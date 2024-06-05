@@ -1,0 +1,24 @@
+<th:block th:fragment="likeAndComment(review)">
+
+    <th:block th:if="${review.liked == true}">
+        <a th:onclick="|likeReview(${review.reviewId},true)|"
+           type="button"
+           class="btn btn-light liked"><i
+                class="fa-solid fa-heart mr-5"></i><span>Liked</span></a><a
+            th:onclick="|showAndFocusOnCommentInput(${review.reviewId})|"
+            type="button"
+            class="btn btn-light"> <i
+            class="fa-regular fa-comment mr-5"></i>Comment</a>
+    </th:block>
+
+    <th:block th:if="${review.liked == false}">
+        <a th:onclick="|likeReview(${review.reviewId},false)|"
+           type="button"
+           class="btn btn-light"><i class="fa-regular fa-heart mr-5"></i><span>Like</span></a><a
+            th:onclick="|showAndFocusOnCommentInput(${review.reviewId})|"
+            type="button"
+            class="btn btn-light"> <i
+            class="fa-regular fa-comment mr-5"></i>Comment</a>
+    </th:block>
+
+</th:block>

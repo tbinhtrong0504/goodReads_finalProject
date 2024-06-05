@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout :: main-fragment(
+                                                ~{:: title},
+                                                ~{},
+                                                ~{:: #header},
+                                                ~{:: #main-content},
+                                                ~{},
+                                                ~{:: #js}
+                                                )}">
+
+<head>
+    <title>Active Account</title>
+
+</head>
+<body>
+<div id="header">
+    <th:block th:replace="fragments/header :: header"></th:block>
+</div>
+
+
+<div class="container-fluid p-0" id="main-content">
+    <div class="homer-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pt-5" style="padding-top: 30px">
+                    <div class="tg-sectionhead">
+                        <h2><span>Welcome to Book Library</span>Activated Successfully!</h2>
+
+                    </div>
+                    <p>Automatically switch pages after <strong id="count-down"
+                                                                style="color: red; font-size: 16px">3</strong> seconds.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Custom Script -->
+<script id="js">
+    $(document).ready(function () {
+        let count = 3;
+
+        function updateCountDown() {
+            $('#count-down').text(count)
+            count--;
+            if (count < 0) {
+                clearInterval(timer);
+                window.location.href = "http://localhost:8080/login";
+            }
+        }
+
+        let timer = setInterval(updateCountDown, 1000);
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="main-fragment(title,cssResources,header,contentResources,footer,jsResources)">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title th:replace="${title}">Page title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" th:href="@{apple-touch-icon.png}">
+    <link rel="stylesheet" th:href="@{/original/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/original/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/original/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/original/css/icomoon.css}">
+    <link rel="stylesheet" th:href="@{/original/css/jquery-ui.css}">
+    <link rel="stylesheet" th:href="@{/original/css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/original/css/transitions.css}">
+    <link rel="stylesheet" th:href="@{/original/css/main.css}">
+    <link rel="stylesheet" th:href="@{/original/css/color.css}">
+    <link rel="stylesheet" th:href="@{/original/css/responsive.css}">
+    <script th:src="@{/original/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"></script>
+    <link rel="icon" th:href="@{/original/images/favicon1.ico}">
+
+    <!--    Toastr-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+          integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!--    font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+
+    <th:block th:replace="${cssResources} ?: ~{}"></th:block>
+
+</head>
+<body class="tg-home tg-homeone">
+
+<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+    <!-- HEADER  -->
+    <th:block th:replace="${header} ?: ~{}"></th:block>
+
+    <!--CONTENT-->
+    <th:block th:replace="${contentResources} ?: ~{}"></th:block>
+
+    <!--FOOTER-->
+    <th:block th:replace="${footer} ?: ~{}"></th:block>
+
+</div>
+<!--************************************
+        Wrapper End
+*************************************-->
+<script th:src="@{/original/js/vendor/jquery-library.js}"></script>
+<script th:src="@{/original/js/vendor/bootstrap.min.js}"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&amp;language=en"></script>
+<script th:src="@{/original/js/owl.carousel.min.js}"></script>
+<script th:src="@{/original/js/jquery.vide.min.js}"></script>
+<script th:src="@{/original/js/countdown.js}"></script>
+<script th:src="@{/original/js/jquery-ui.js}"></script>
+<script th:src="@{/original/js/parallax.js}"></script>
+<script th:src="@{/original/js/countTo.js}"></script>
+<script th:src="@{/original/js/appear.js}"></script>
+<script th:src="@{/original/js/gmap3.js}"></script>
+<script th:src="@{/original/js/main.js}"></script>
+
+<script th:src="@{/handle/authentication.js}"></script>
+<script th:src="@{/handle/find-book.js}"></script>
+<script th:src="@{/handle/main.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<th:block th:replace="${jsResources} ?: ~{}"></th:block>
+</body>
+
+</html>

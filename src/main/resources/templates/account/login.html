@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Log in</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" th:href="@{/account/fonts/material-icon/css/material-design-iconic-font.min.css}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/account/vendor/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+          integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Main css -->
+    <link rel="stylesheet" th:href="@{/account/css/style.css}">
+
+</head>
+<body class="main">
+
+<!-- Sing in  Form -->
+<section class="sign-in mb-5">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><a href="/"><img th:src="@{/account/img/signin-image.jpg}" alt="sing up image">Homepage</a></figure>
+            </div>
+
+            <div class="signin-form">
+                <h2 class="form-title">Log In</h2>
+                <form class="register-form mb-2" id="login-form">
+                    <div class="form-group">
+                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                        <input type="email" name="email" id="email" placeholder="Your Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" name="password" id="password" placeholder="Password"/>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="checkbox" id="show-password"/>
+                        <label for="show-password" class="label-of-show-pass">Show password</label>
+
+                    </div>
+                </form>
+
+                <div class="form-group form-button mb-5">
+                    <input type="submit" name="signin" id="signin" class="form-submit w-100" value="Log in"/>
+                </div>
+
+                <!--                <a href="" class="link forgot-password-link">Forgot password?</a>-->
+                <button class="btn link forgot-password-link">Forgot password?</button>
+
+                <button onclick=window.location.href='http://localhost:8080/signup' class="btn link signup-image-link">
+                    Create an account?
+                </button>
+                <!--                <a href="/signup" class="link signup-image-link">Create an account?</a>-->
+            </div>
+        </div>
+    </div>
+</section>
+<div class="footer-main">
+</div>
+<div th:replace="fragments/forgot-password-modal :: forgot-password-modal"></div>
+
+<!-- JS -->
+<script th:src="@{/account/vendor/jquery/jquery.min.js}"></script>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script th:src="@{/handle/authentication.js}"></script>
+
+<script>
+    $(document).ready(function () {
+        console.log(CryptoJS.MD5('admin123').toString())
+        console.log(CryptoJS.MD5('123456').toString())
+        $('#email, #password  ').on('keyup', function (event) {
+            if (event.key !== 'Enter') {
+                $('#login-form').validate().resetForm();
+            }
+        })
+    })
+</script>
+</body>
+</html>

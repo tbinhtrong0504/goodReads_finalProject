@@ -1,0 +1,240 @@
+<!doctype html >
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: #css},
+                                                ~{:: #header},
+                                                ~{:: #tg-main},
+                                                ~{:: #footer},
+                                                ~{:: #jsRecourse}
+                                                )}">
+
+<head>
+
+    <title>My Books</title>
+    <th:block id="css">
+        <style>
+            #tg-main {
+                font-size: 13px;
+            }
+        </style>
+    </th:block>
+</head>
+
+<body>
+
+<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+    <!--************************************
+            Header Start
+    *************************************-->
+    <th:block id="header" th:replace="fragments/header :: header"></th:block>
+    <!--************************************
+            Header End
+    *************************************-->
+
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <!--************************************
+                News Grid Start
+        *************************************-->
+        <div class="tg-sectionspace tg-haslayout">
+            <div class="container my-books">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                            <div id="tg-content" class="tg-content">
+                                <div class="tg-newslist">
+                                    <div class="tg-sectionhead">
+                                        <h2>My Books</h2>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th class="mybook-header cover">cover</th>
+                                                    <th class="mybook-header title">title</th>
+                                                    <th class="mybook-header author">author</th>
+                                                    <th class="mybook-header cover">avg<br> rating</th>
+                                                    <!--                                                    <th class="mybook-header cover rating">Your<br> rating</th>-->
+                                                    <th class="mybook-header cover shelves">shelves</th>
+                                                    <!--                                                    <th class="mybook-header cover review">review</th>-->
+                                                    <!--                                                    <th class="mybook-header cover date">date</th>-->
+                                                    <th class="mybook-header cover date">actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="myBook:${myBookList.data}">
+                                                    <td>
+                                                        <div class="mybook-cover p-2"
+                                                             style="width: 50px; height: 80px; padding: 3px;">
+                                                            <a th:href="@{/books/{bookId} (bookId=${myBook.book.id})}"><img
+                                                                    th:src="${myBook.book.image}"
+                                                                    alt="image cover"></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mybook-title" style="max-width: 125px">
+                                                            <a th:href="@{/books/{bookId} (bookId=${myBook.book.id})}"
+                                                               th:text="${myBook.book.title}">abc1sádafsf</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mybook-author">
+                                                            <a href="#" th:text="${myBook.book.author}">abc2</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mybook-avg-rating">
+                                                            <a href="#" th:text="${myBook.book.rating}">abc3</a>
+                                                        </div>
+                                                    </td>
+                                                    <!--                                                    <td>-->
+                                                    <!--                                                        <div class="mybook-rating"-->
+                                                    <!--                                                             style="padding: 12px 0px 0px 10px;">-->
+                                                    <!--                                                            <div class="star">-->
+                                                    <!--                                                                <a href="#" style="margin-top: 5px;"><span-->
+                                                    <!--                                                                        class="tg-stars"><span></span></span></a>-->
+                                                    <!--                                                            </div>-->
+
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </td>-->
+                                                    <td>
+                                                        <div class="mybook-shelves">
+                                                            <a th:text="${myBook.readingStatus}">to-read</a>
+
+                                                        </div>
+                                                    </td>
+                                                    <!--                                                    <td>-->
+                                                    <!--                                                        <div class="mybook-review"-->
+                                                    <!--                                                             style="padding-top: 9px; max-width: 200px">-->
+                                                    <!--                                                            <p class="mybook-review-content">your review-->
+                                                    <!--                                                                sadfasdfsadfsafsfsafasf df...<span><a-->
+                                                    <!--                                                                        href="#">[edit]</a></span></p>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </td>-->
+                                                    <!--                                                    <td>-->
+                                                    <!--                                                        <div class="mybook-date" style="padding-top: 10px;">-->
+                                                    <!--                                                            <p>28/5/2023</p>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </td>-->
+                                                    <td>
+                                                        <div class="action"
+                                                             style="display: flex; justify-content: space-around ;">
+                                                            <!--                                                            <a href="javascript:void(0);"><i-->
+                                                            <!--                                                                    class="fa fa-eye"></i></a>-->
+                                                            <button type="button" class="close" data-dismiss="alert"
+                                                                    th:onclick="|deleteMybook(${myBook.book.id})|"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+                                <div class="tg-widget tg-widgetsearch">
+                                    <form class="tg-formtheme tg-formsearch">
+                                        <div class="form-group">
+                                            <!--                                            <button type="submit"><i class="icon-magnifier"></i></button>-->
+                                            <!--                                            <input type="search" name="search" class="form-group"-->
+                                            <!--                                                   placeholder="Search Here">-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tg-widget tg-catagories" style="margin-top: 50px">
+                                    <div class="tg-widgettitle">
+                                        <h3>Bookshelves</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul th:with="countMyBook=${countMyBookList}">
+                                            <li><a href="javascript:void(0);"><span>All</span><em
+                                                    th:text="${countMyBook[0]}">28245</em></a></li>
+                                            <li><a
+                                                    href="javascript:void(0);"><span>Read</span><em
+                                                    th:text="${countMyBook[1]}">4856</em></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);"><span>Currently Reading</span><em
+                                                        th:text="${countMyBook[2]}">8654</em></a>
+                                            </li>
+                                            <li><a href="javascript:void(0);"><span>Wan to Read</span><em
+                                                    th:text="${countMyBook[3]}">6247</em></a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgettrending">
+                                    <div class="tg-widgettitle">
+                                        <h3>Your reading activity</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            <li><a href="/users/challenge"><span>Reading Challenge</span></a></li>
+                                            <li><a
+                                                    href="javascript:void(0);"><span>Recommendations</span></a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                News Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+    <!--************************************
+            Footer Start
+    *************************************-->
+    <th:block id="footer" th:replace="fragments/footer :: footer"></th:block>
+    <!--************************************
+            Footer End
+    *************************************-->
+</div>
+<!--************************************
+        Wrapper End
+*************************************-->
+
+<th:block id="jsRecourse">
+    <script th:inline="javascript">
+        function deleteMybook(bookId) {
+            $.ajax({
+                url: '/api/v1/users/book-reading/' + bookId,
+                type: 'DELETE',
+                success: function () {
+                    window.confirm("Do you want remove this book?")
+                    toastr.success('Remove book successfull!');
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 600)
+                }
+            })
+        }
+    </script>
+</th:block>
+</body>
+
+</html>
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" th:href="@{account/fonts/material-icon/css/material-design-iconic-font.min.css}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{account/vendor/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+          integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Main css -->
+    <link rel="stylesheet" th:href="@{account/css/style.css}">
+</head>
+
+<body class="main m-0">
+
+
+<!-- Sign up form -->
+<section class="signup mb-5">
+    <div class="container">
+        <div class="signup-content">
+
+            <div class="signup-form">
+                <h2 class="form-title">Sign up</h2>
+                <form method="POST" class="register-form" id="register-form">
+                    <div class="form-group">
+                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="text" name="name" id="name" placeholder="Your Name"
+                               style="text-transform: capitalize"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                        <input type="email" name="email" id="email" placeholder="Your Email"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" name="password" id="password" placeholder="Password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                        <input type="password" name="re-pass" id="re-pass" placeholder="Repeat your password"/>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="checkbox" id="show-password"/>
+                        <label for="show-password" class="label-of-show-pass">Show password</label>
+
+                    </div>
+
+                </form>
+                <div class="form-group form-button">
+                    <input type="submit" name="signup" id="signup" class="form-submit w-100" value="Submit"/>
+                </div>
+            </div>
+            <div class="signup-image text-center">
+                <figure><a href="/"><img src="account/img/signup-image.jpg" alt="sing up image">Homepage</a></figure>
+                <a href="/login" class="link signup-image-link">I am already member</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<div class="footer-main">
+</div>
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+<script src="account/vendor/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script th:src="@{account/js/main.js}"></script>
+<script th:src="@{/handle/authentication.js}"></script>
+<script>
+    $(document).ready(function () {
+
+        $('#email, #password, #re-pass').on('keyup', function (event) {
+            if (event.key !== 'Enter') {
+                $('#register-form').validate().resetForm();
+            }
+        })
+    })
+</script>
+</body>
+
+</html>

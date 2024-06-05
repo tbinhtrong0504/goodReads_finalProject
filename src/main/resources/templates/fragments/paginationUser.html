@@ -1,0 +1,116 @@
+<th:block th:fragment="pagination(currentPage,pageBookInfo)">
+    <th:block th:if="${pageBookInfo.pageNumber}>0">
+        <div class="pt-30">
+            <div class="row justify-content-center">
+
+                <div class="col-auto mr-15">
+                    <a type="button" class="page-link previous-link"
+                       th:classappend="${currentPage == 1 ? 'disabled-link' : ''}">
+                        <button class="button -blue-1 size-40 rounded-full border-light">
+                            <i class="icon-chevron-left text-12"></i>
+                        </button>
+                    </a>
+                </div>
+
+                <th:block th:if="${pageBookInfo.pageNumber<=5 && pageBookInfo.pageNumber>0}">
+                    <div class="col-auto">
+                        <div class="row x-gap-20 y-gap-20 items-center">
+                            <div class="col-auto flex-center">
+                                <a type="button" class="size-40 flex-center rounded-full chose-page pointer"
+                                   th:each="page:${#numbers.sequence(1,pageBookInfo.pageNumber)}"
+                                   th:attr="page-number=${page}"
+                                   th:classappend="${currentPage == page ? 'bg-dark-1 text-white' : '' }">
+                                    <div th:text="${page}">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+                <th:block th:if="${pageBookInfo.pageNumber}>5">
+                    <th:block th:if="${currentPage}<=3">
+                        <div class="col-auto">
+                            <div class="row x-gap-20 y-gap-20 items-center">
+                                <div class="col-auto flex-center">
+                                    <a type="button" class="size-40 flex-center rounded-full chose-page pointer"
+                                       th:each="page:${#numbers.sequence(1,5)}"
+                                       th:attr="page-number=${page}"
+                                       th:classappend="${currentPage == page ? 'bg-dark-1 text-white' : '' }">
+                                        <div th:text="${page}">
+                                        </div>
+                                    </a>
+                                    <span>...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${currentPage}>3">
+                        <th:block th:if="${currentPage}<${pageBookInfo.pageNumber}-2">
+                            <div class="col-auto">
+                                <div class="row x-gap-20 y-gap-20 items-center">
+                                    <div class="col-auto flex-center">
+                                        <span>...</span>
+                                        <a type="button" class="size-40 flex-center rounded-full chose-page pointer"
+                                           th:each="page:${#numbers.sequence(currentPage-2,currentPage+2)}"
+                                           th:attr="page-number=${page}"
+                                           th:classappend="${currentPage == page ? 'bg-dark-1 text-white' : '' }">
+                                            <div th:text="${page}">
+                                            </div>
+                                        </a>
+                                        <span>...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${currentPage}>=${pageBookInfo.pageNumber}-2">
+                            <div class="col-auto">
+                                <div class="row x-gap-20 y-gap-20 items-center">
+                                    <div class="col-auto flex-center">
+                                        <span>...</span>
+                                        <a type="button" class="size-40 flex-center rounded-full chose-page pointer"
+                                           th:each="page:${#numbers.sequence(pageBookInfo.pageNumber-4,pageBookInfo.pageNumber)}"
+                                           th:attr="page-number=${page}"
+                                           th:classappend="${currentPage == page ? 'bg-dark-1 text-white' : '' }">
+                                            <div th:text="${page}">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
+                    </th:block>
+                </th:block>
+
+                <div class="col-auto d-flex d-inline ml-15">
+                    <a type="button" class="page-link next-link"
+                       th:classappend="${currentPage == pageBookInfo.pageNumber ? 'disabled-link' : ''}">
+                        <button class="button -blue-1 size-40 rounded-full border-light">
+                            <i class="icon-chevron-right text-12"></i>
+                        </button>
+                    </a>
+                    <div class="ml-10 col-auto d-flex align-items-end">
+                        <label for="pageInput" class="text-12 text-light-1 mr-10"> </label>
+                        <select class="form-control text-10" id="pageInput">
+                            <option th:each="page : ${#numbers.sequence(1,pageBookInfo.pageNumber)}"
+                                    th:value="${page}"
+                                    th:text="${page}"
+                                    th:selected="${page == currentPage}">
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+    <th:block th:if="${pageBookInfo.pageNumber}==0">
+        <div class="col-auto">
+            <div class="row x-gap-20 y-gap-20 items-center">
+                <div class="col-auto flex-center">
+                    <h3>No Data!</h3>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>

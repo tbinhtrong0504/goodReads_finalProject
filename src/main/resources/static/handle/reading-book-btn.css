@@ -1,0 +1,20 @@
+#reading-book-status {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+}
+
+#reading-book-status .status-content {
+    min-width: 125px;
+    width: inherit;
+}
+
+#reading-book-status .dropdown-menu {
+    min-width: 150px;
+    width: 100%;
+    padding-left: 20px;
+}
+
+#reading-book-status .btn-light {
+    background-color: #F0F0F0;
+}
